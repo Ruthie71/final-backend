@@ -46,7 +46,7 @@ const workJoi = Joi.array().items(
 
 
 export const profileBody = Joi.object().keys({
-    user: Joi.string().required(),
+    user: Joi.string(),
     address: addressJoi,
     contact: contactJoi,
     details: detailsJoi,

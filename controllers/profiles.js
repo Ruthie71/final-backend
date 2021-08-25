@@ -12,24 +12,29 @@ export const getSingleProfile = asyncHandler(async (req, res) => {
 
 export const createNewProfile = asyncHandler(async (req, res) => {
     const profile = req.body
-    console.log(profile)
+    const { _id: user } = req.user;
+    const findUser = await Profile.findOne({ user });
+    if(findUser && user.toString(2)==findUser.user.toString(2))throw new ErrorResponse('Profile already exists');
+    profile.user = user
     if (!profile)
         throw new ErrorResponse('...are required fields');
     const newProfile = await Profile.create(
         profile
     );
-    
+    await User.findOneAndUpdate(
+        {_id: user},
+        {profile: newProfile._id }
+    )
     res.status(201).json(newProfile);
 });
 
 export const updateProfile = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const profile = req.body;
-    console.log(profile)
+    const { _id: user } = req.user;
+    profile.user = user
     const findProfile = await Profile.findById(id);
     if (!findProfile) throw new ErrorResponse(`Post with id of ${id} not found`, 404);
-    // if (String(post.author) !== String(author))
-    //     throw new ErrorResponse(`Cannot edit another user's posts`, 401);
     const updatedProfile = await Profile.findOneAndUpdate(
         { _id: id },
         profile,
