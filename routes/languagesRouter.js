@@ -7,3 +7,4 @@ languagesRouter.get('/', getAllLanguages);
 languagesRouter.get('/:id', getSingleLanguage);
 
 export default languagesRouter
+
