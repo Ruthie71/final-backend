@@ -27,6 +27,7 @@ if (process.env.AWS_BUCKET) {
       cb(null, key);
     }
   });
+  
 } else {
   const uploadFolder = resolve('public', 'uploads');
   storage = diskStorage({

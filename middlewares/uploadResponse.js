@@ -9,9 +9,9 @@ const uploadResponse = (req, res, next) => {
   const location = process.env.AWS_BUCKET
     ? req.file.location
     : `${protocol}://${host}/uploads/${file.filename}`;
-    console.log("works")
  req.profilePicture = location
- next()
+res.send(location)
+//  next()
 };
 
 export default uploadResponse;
