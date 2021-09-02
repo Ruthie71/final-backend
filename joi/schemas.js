@@ -12,7 +12,7 @@ const addressJoi = Joi.object().keys({
 
 const contactJoi = Joi.object().keys({
     _id: Joi.string().allow(''),
-    phone: Joi.number().allow(''),
+    phone: Joi.string().allow(''),
     email: Joi.string().email().allow(''),
     git: Joi.string().allow(''),
     linkedin: Joi.string().allow('')
