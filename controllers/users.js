@@ -16,7 +16,27 @@ export const signUp = asyncHandler(async (req, res) => {
   const hashPassword = await bcrypt.hash(password, 5);
   const data = await User.create({ email, password: hashPassword });
   const id = data._id
-  const newProfile = await Profile.create({user: id })
+  const newProfile = await Profile.create({
+    user: id,
+    firstname: "",
+    lastname: "",
+    address:
+    {
+      city: "",
+      street: "",
+      housenr: "",
+      zipcode: "",
+      country: "",
+    }, contact: {
+      phone: "",
+      email: "",
+      git: "",
+      linkedin: ""
+    }, details: {dateofbirth: "",
+    jobtitle: ""},
+    personalstatement: "",
+    photo: ""
+  })
   const updatedProfile = await User.findOneAndUpdate(
     { _id: id },
     {profile: newProfile._id},

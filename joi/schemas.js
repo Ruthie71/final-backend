@@ -2,60 +2,63 @@ import Joi from 'joi';
 
 
 const addressJoi = Joi.object().keys({
-    city: Joi.string(),
-    street: Joi.string(),
-    housenr: Joi.string(),
-    zipcode: Joi.string(),
-    country: Joi.string(),
+    _id: Joi.string().allow(''),
+    city: Joi.string().allow(''),
+    street: Joi.string().allow(''),
+    housenr: Joi.string().allow(''),
+    zipcode: Joi.string().allow(''),
+    country: Joi.string().allow(''),
 })
 
 const contactJoi = Joi.object().keys({
-    phone: Joi.number(),
-    email: Joi.string().email(),
-    git: Joi.string(),
-    linkedin: Joi.string()
+    _id: Joi.string().allow(''),
+    phone: Joi.number().allow(''),
+    email: Joi.string().email().allow(''),
+    git: Joi.string().allow(''),
+    linkedin: Joi.string().allow('')
 })
 
 const detailsJoi = Joi.object().keys({
-    dateofbirth: Joi.string(),
-    jobtitle: Joi.string()
+    _id: Joi.string().allow(''),
+    dateofbirth: Joi.string().allow(''),
+    jobtitle: Joi.string().allow('')
 })
 
 const educationJoi = Joi.array().items(
     Joi.object({
-        coursename: Joi.string(),
-        startdate: Joi.string(),
-        finishdate: Joi.string(),
-        academicinstitution: Joi.string(),
-        location: Joi.string(),
-        coursecontent:Joi.string()
+        coursename: Joi.string().allow(''),
+        startdate: Joi.string().allow(''),
+        finishdate: Joi.string().allow(''),
+        academicinstitution: Joi.string().allow(''),
+        location: Joi.string().allow(''),
+        coursecontent:Joi.string().allow('')
     })
 )
 
 const workJoi = Joi.array().items(
     Joi.object({
-        jobtitle: Joi.string(),
-        startdate: Joi.string(),
-        finishdate: Joi.string(),
-        companyname: Joi.string(),
-        location: Joi.string(),
-        keyachievements: Joi.string()
+        jobtitle: Joi.string().allow(''),
+        startdate: Joi.string().allow(''),
+        finishdate: Joi.string().allow(''),
+        companyname: Joi.string().allow(''),
+        location: Joi.string().allow(''),
+        keyachievements: Joi.string().allow('')
     })
 )
 
 
 
 export const profileBody = Joi.object().keys({
-    user: Joi.string(),
-    firstname: Joi.string(),
-    lastname: Joi.string(),
-    email: Joi.string(),
+    _id: Joi.string().allow(''),
+    user: Joi.string().allow(''),
+    firstname: Joi.string().allow(''),
+    lastname: Joi.string().allow(''),
     address: addressJoi,
     contact: contactJoi,
     details: detailsJoi,
-    personalskills: Joi.array(),
-    personalstatement: Joi.string(),
-    photo: Joi.string(),
+    personalskills: Joi.array().allow(''),
+    personalstatement: Joi.string().allow(''),
+    photo: Joi.string().allow(''),
     education: educationJoi,
     languages: Joi.array(),
     work: workJoi,

@@ -16,7 +16,6 @@ export const aiCompletion = asyncHandler(async (req, res) => {
         frequencyPenalty: 0,
         stop: ['.']
     })
-    console.log(aiResponse)
     if (!aiResponse)
         throw new ErrorResponse('No Response from OpenAI', 404);
     res.json(aiResponse.data);
