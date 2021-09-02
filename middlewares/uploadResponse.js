@@ -1,7 +1,10 @@
   
 import ErrorResponse from '../utils/ErrorResponse.js';
+import Profile from '../models/Profile.js';
+import asyncHandler from './asyncHandler.js';
 
-const uploadResponse = (req, res, next) => {
+const uploadResponse = asyncHandler(async(req, res, next) => {
+  console.log(req.user.profile._id)
   const { file, fileValidationError, protocol } = req;
   const host = req.get('host');
   if (!file) throw new ErrorResponse('Please upload one picture', 400);
@@ -10,8 +13,12 @@ const uploadResponse = (req, res, next) => {
     ? req.file.location
     : `${protocol}://${host}/uploads/${file.filename}`;
  req.profilePicture = location
+ await Profile.findOneAndUpdate(
+  {_id: req.user.profile._id},
+  {photo: location }
+)
 res.send(location)
 //  next()
-};
+});
 
 export default uploadResponse;

@@ -5,6 +5,7 @@ import ErrorResponse from '../utils/ErrorResponse.js';
 
 const verifyToken = asyncHandler(async (req, res, next) => {
   const { authorization } = req.headers;
+  console.log(req.headers)
   if (!authorization) throw new ErrorResponse('Unauthorized', 401);
   if (!authorization.startsWith('Bearer '))
     throw new ErrorResponse('No Bearer token is present', 400);
