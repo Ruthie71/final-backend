@@ -45,6 +45,9 @@ const workSchema = new Schema({
 
 const profileSchema = new Schema({
     user: { type: ObjectId, required: true, ref: 'User' },
+    firstname: { type: String },
+    lastname: { type: String },
+    email: { type: String},
     address: addressSchema,
     contact: contactSchema,
     details: detailsSchema,

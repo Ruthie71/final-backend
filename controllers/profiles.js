@@ -5,9 +5,12 @@ import ErrorResponse from '../utils/ErrorResponse.js';
 
 export const getSingleProfile = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const post = await Profile.findById(id);
-    if (!post) throw new ErrorResponse(`Post with id of ${id} not found`, 404);
-    res.json(post);
+    const profile = req.body;
+    const { _id: user } = req.user;
+    profile.user = user
+    const findProfile = await Profile.findById(id);
+    if (!findProfile) throw new ErrorResponse(`Post with id of ${id} not found`, 404);
+    res.json(findProfile);
 });
 
 export const createNewProfile = asyncHandler(async (req, res) => {

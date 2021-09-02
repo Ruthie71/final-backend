@@ -1,20 +1,28 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
+import Profile from '../models/Profile.js';
 import asyncHandler from '../middlewares/asyncHandler.js';
 import ErrorResponse from '../utils/ErrorResponse.js';
 
 const generateToken = (data, secret) => jwt.sign(data, secret, { expiresIn: '1800s' });
 
 export const signUp = asyncHandler(async (req, res) => {
-  const { firstname, lastname, email, password } = req.body;
-  if (!firstname || !lastname || !email || !password)
+  const {email, password } = req.body;
+  if (!email || !password)
     throw new ErrorResponse('Name, email and password are required', 400);
   const found = await User.findOne({ email });
   if (found) throw new ErrorResponse('Email is already taken', 403);
   const hashPassword = await bcrypt.hash(password, 5);
-  const { _id } = await User.create({ firstname, lastname, email, password: hashPassword });
-  const token = generateToken({ _id }, process.env.JWT_SECRET);
+  const data = await User.create({ email, password: hashPassword });
+  const id = data._id
+  const newProfile = await Profile.create({user: id })
+  const updatedProfile = await User.findOneAndUpdate(
+    { _id: id },
+    {profile: newProfile._id},
+    { new: true }
+);
+  const token = generateToken({ id }, process.env.JWT_SECRET);
   res.status(200).json({ token });
 });
 
