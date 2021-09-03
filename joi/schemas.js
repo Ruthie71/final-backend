@@ -54,7 +54,7 @@ export const profileBody = Joi.object().keys({
     address: addressJoi,
     contact: contactJoi,
     details: detailsJoi,
-    personalskills: Joi.array().allow(''),
+    personalskills: Joi.array(),
     personalstatement: Joi.string().allow(''),
     photo: Joi.string().allow(''),
     education: Joi.array().items(educationJoi),
