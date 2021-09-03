@@ -24,8 +24,7 @@ const detailsJoi = Joi.object().keys({
     jobtitle: Joi.string().allow('')
 })
 
-const educationJoi = Joi.array().items(
-    Joi.object({
+const educationJoi = Joi.object().keys({
         coursename: Joi.string().allow(''),
         startdate: Joi.string().allow(''),
         finishdate: Joi.string().allow(''),
@@ -33,10 +32,9 @@ const educationJoi = Joi.array().items(
         location: Joi.string().allow(''),
         coursecontent:Joi.string().allow('')
     })
-)
 
-const workJoi = Joi.array().items(
-    Joi.object({
+
+const workJoi = Joi.object().keys({
         jobtitle: Joi.string().allow(''),
         startdate: Joi.string().allow(''),
         finishdate: Joi.string().allow(''),
@@ -44,7 +42,7 @@ const workJoi = Joi.array().items(
         location: Joi.string().allow(''),
         keyachievements: Joi.string().allow('')
     })
-)
+
 
 
 
@@ -59,9 +57,9 @@ export const profileBody = Joi.object().keys({
     personalskills: Joi.array().allow(''),
     personalstatement: Joi.string().allow(''),
     photo: Joi.string().allow(''),
-    education: educationJoi,
+    education: Joi.array().items(educationJoi),
     languages: Joi.array(),
-    work: workJoi,
+    work: Joi.array().items(workJoi),
     techskills: Joi.array(),
 });
 
