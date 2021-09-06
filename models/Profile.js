@@ -50,7 +50,6 @@ const profileSchema = new Schema({
     address: addressSchema,
     contact: contactSchema,
     details: detailsSchema,
-    // personalskills: [{type: ObjectId, ref: 'Personalskill'}],
     personalskills: {type: Array},
     personalstatement:  { type: String },
     photo:  { type: String },
