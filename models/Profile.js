@@ -55,9 +55,9 @@ const profileSchema = new Schema({
     personalstatement:  { type: String },
     photo:  { type: String },
     education: [educationSchema],
-    languages: [{type: ObjectId, ref: 'Language'}],
+    languages: {type: Array},
     work: [workSchema],
-    techskills: [{type: ObjectId, ref: 'Techskill'}],
+    techskills: {type: Array},
   });
 
 const Profile = model('Profile', profileSchema);
