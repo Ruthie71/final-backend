@@ -45,31 +45,3 @@ export const updateProfile = asyncHandler(async (req, res) => {
     );
     res.json(updatedProfile);
 });
-
-
-// {
-//     user: "shghcsfghjfhg",
-//     address: {
-//         city: "Berlin",
-//         street: "Muster Str",
-//         housenr: 36,
-//         zipcode: 10245,
-//         country: "Germany"
-//     },
-//     contact: {
-//         phone: 01759860126,
-//         email: "alexandru.ciripoi@gmail.com",
-//         git: "github.com/alexandruciripoi",
-//         linkedin: "linkedin.com/alexandruciripoi",
-//     },
-//     details: {
-//         dateofbirth: 01.07.1988
-//         jobtitle: "Fullstack Developer"
-//     },
-//     personalskills: ["problem soving", "Strategy"],
-//     personalstatement: "Some stuff aabout me",
-//     education: [{coursename: "",  startdate: "", finishdate: "", academicinstitution: "", location: "", coursecontent: ""}],
-//     languages: ["english", "german"],
-//     work: [{jobtitle: "", startdate: "", finishdate: "", companyname: "", location:"", keyachievements:""}],
-//     techskills: ["JS", "CSS"]
-// }
