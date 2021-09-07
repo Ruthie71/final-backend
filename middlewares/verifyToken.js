@@ -13,7 +13,6 @@ const verifyToken = asyncHandler(async (req, res, next) => {
   const found = await User.findById(_id).populate("profile")
   if (!found) throw new ErrorResponse('User does not exist', 404);
   req.user = found;
-  console.log(req.headers)
   next();
 });
 

@@ -32,6 +32,7 @@ export const createNewProfile = asyncHandler(async (req, res) => {
 });
 
 export const updateProfile = asyncHandler(async (req, res) => {
+    console.log(req.body)
     const { id } = req.params;
     const profile = req.body;
     const { _id: user } = req.user;

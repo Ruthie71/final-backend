@@ -23,11 +23,12 @@ export const aiCompletion = asyncHandler(async (req, res) => {
 
 
 export const aiSummary = asyncHandler(async (req, res) => {
-    const person = req.body.person;
-    const text = req.body.text;
+    const information = req.body;
+    console.log(information)
+    const promptAI = `My name is ${information.firstname} ${information.lastname}. I was born in ${information.details.dateofbirth}. I studied ${information.education[0].coursename} at ${information.education[0].academicinstitution} from ${information.education[0].startdate.substring(0, 4)} to ${information.education[0].finishdate.substring(0, 4)}. I worked as ${information.work[0].jobtitle} at ${information.work[0].companyname} from ${information.work[0].startdate.substring(0, 4)} to ${information.work[0].finishdate.substring(0, 4)}. I have programing experience in ${information.techskills[0]}. `
     const aiResponse = await openai.complete({
         engine: 'davinci',
-        prompt:`My ${person} asked me what this passage means:\n\"\"\"\n${text}.\n\"\"\"\nI rephrased it for him, in plain language ${person} can understand:\n\"\"\"\n`,
+        prompt:`A senior web developer asked me to describe myself:\n\"\"\"\n${promptAI}.\n\"\"\"\nI rephrased it for him, with appropriate language for a job interview:\n\"\"\"\n`,
         temperature: 0.5,
         max_tokens:60,
         top_p:1.0,

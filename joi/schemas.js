@@ -30,7 +30,8 @@ const educationJoi = Joi.object().keys({
         finishdate: Joi.string().allow(''),
         academicinstitution: Joi.string().allow(''),
         location: Joi.string().allow(''),
-        coursecontent:Joi.string().allow('')
+        coursecontent:Joi.string().allow(''),
+        _id:Joi.string().allow('')
     })
 
 
@@ -40,10 +41,9 @@ const workJoi = Joi.object().keys({
         finishdate: Joi.string().allow(''),
         companyname: Joi.string().allow(''),
         location: Joi.string().allow(''),
-        keyachievements: Joi.string().allow('')
+        keyachievements: Joi.string().allow(''),
+        _id:Joi.string().allow('')
     })
-
-
 
 
 export const profileBody = Joi.object().keys({

@@ -31,7 +31,8 @@ const educationSchema = new Schema({
   finishdate: {type:String},
   academicinstitution: {type:String},
   location: {type:String},
-  coursecontent: {type:String}
+  coursecontent: {type:String},
+  _id: {type:String}
 })
 
 const workSchema = new Schema({
@@ -40,7 +41,8 @@ const workSchema = new Schema({
   finishdate: {type:String},
   companyname: {type:String},
   location: {type:String},
-  keyachievements: {type:String}
+  keyachievements: {type:String},
+  _id: {type:String}
 })
 
 const profileSchema = new Schema({
