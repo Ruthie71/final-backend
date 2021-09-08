@@ -38,12 +38,10 @@ if (process.env.AWS_BUCKET) {
 }
 
 
-
 const isPicture = ({ mimetype }) => {
   const allowedMimeTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
   return allowedMimeTypes.includes(mimetype);
 };
-
 const fileFilter = (req, file, cb) => {
   if (!isPicture(file)) {
     req.fileValidationError = 'Only images please';

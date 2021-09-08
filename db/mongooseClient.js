@@ -1,7 +1,6 @@
   
 import mongoose from 'mongoose';
 
-// IIFE
 (async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI, {
