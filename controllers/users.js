@@ -14,10 +14,9 @@ export const signUp = asyncHandler(async (req, res) => {
   const found = await User.findOne({ email });
   if (found) throw new ErrorResponse('Email is already taken', 403);
   const hashPassword = await bcrypt.hash(password, 5);
-  const data = await User.create({ email, password: hashPassword });
-  const id = data._id
+  const {_id} = await User.create({ email, password: hashPassword });
   const newProfile = await Profile.create({
-    user: id,
+    user: _id,
     firstname: "",
     lastname: "",
     address:
@@ -38,11 +37,11 @@ export const signUp = asyncHandler(async (req, res) => {
     photo: ""
   })
   const updatedProfile = await User.findOneAndUpdate(
-    { _id: id },
+    { _id },
     {profile: newProfile._id},
     { new: true }
 );
-  const token = generateToken({ id }, process.env.JWT_SECRET);
+  const token = generateToken({ _id }, process.env.JWT_SECRET);
   res.status(200).json({ token });
 });
 
